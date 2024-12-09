@@ -1,0 +1,43 @@
+public class RegresionLineal {
+    private double[] x; // Valores de publicidad (variable independiente)
+    private double[] y; // Valores de ventas (variable dependiente)
+    private double beta0; // Intercepto
+    private double beta1; // Pendiente
+
+    public RegresionLineal(double[] x, double[] y) {
+        this.x = x;
+        this.y = y;
+        calcularRegresion();
+    }
+    private void calcularRegresion() {
+        int n = x.length;
+
+        double sumX = 0.0, sumY = 0.0, sumXY = 0.0, sumX2 = 0.0;
+
+        for (int i = 0; i < n; i++) {
+            sumX += x[i];
+            sumY += y[i];
+            sumXY += x[i] * y[i];
+            sumX2 += x[i] * x[i];
+        }
+        beta1 = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+        beta0 = (sumY - beta1 * sumX) / n;
+    }
+    public double predecir(double xNuevo) {
+        return beta0 + beta1 * xNuevo;
+    }
+    public void mostrarModelo() {
+        System.out.println("Modelo de Regresion Lineal: y = " + beta0 + " + " + beta1 + "x");
+    }
+    public static void main(String[] args) {
+        double[] publicidad = {23, 26, 30, 34, 43, 48, 52, 57, 58};
+        double[] ventas = {651, 762, 856, 1063, 1190, 1298, 1421, 1440, 1518};
+
+        RegresionLineal modelo = new RegresionLineal(publicidad, ventas);
+        modelo.mostrarModelo();
+
+        double publicidadNueva = 60;
+        double ventasPredichas = modelo.predecir(publicidadNueva);
+        System.out.println("Para publicidad = " + publicidadNueva + ", ventas predichas = " + ventasPredichas);
+    }
+}
