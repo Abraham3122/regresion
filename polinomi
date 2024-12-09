@@ -1,0 +1,28 @@
+public class TablaFrecuencias {
+    public static void main(String[] args) {
+        int[] clases = {1, 2, 3, 4, 5, 6};
+        double[][] limitesClase = {
+            {25, 33}, {34, 42}, {43, 51}, {52, 60}, {61, 69}, {70, 78}
+        };
+        int[] frecuencias = {4, 4, 8, 7, 5, 3};
+        double[] puntosMedios = {29, 38, 47, 56, 65, 74};
+        double[] fr = {0.13, 0.13, 0.26, 0.23, 0.16, 0.09};
+        double[] fa = {4, 8, 16, 23, 28, 31};
+        double[] fra = {0.13, 0.26, 0.52, 0.75, 0.91, 1.00};
+        double[] porcentajes = {13, 13, 26, 23, 16, 9};
+        
+        System.out.println("Clase | Límite de clase | Frecuencia (f) | Punto Medio (Xc) | Fa | fr | fra | Porcentaje %");
+        for (int i = 0; i < clases.length; i++) {
+            System.out.printf("%5d | %15s | %14d | %16.2f | %2.0f | %.2f | %.2f | %.0f%%\n",
+                clases[i],
+                String.format("%.0f-%.0f", limitesClase[i][0], limitesClase[i][1]),
+                frecuencias[i],
+                puntosMedios[i],
+                fa[i],
+                fr[i],
+                fra[i],
+                porcentajes[i]
+            );
+        }
+    }
+}
